@@ -271,13 +271,10 @@ public class LocalAuthPlugin implements MethodCallHandler, FlutterPlugin, Activi
     }
     PackageManager packageManager = activity.getPackageManager();
     FingerprintManagerCompat fingerprintMgr = FingerprintManagerCompat.from(activity);
-    if (fingerprintMgr.isHardwareDetected()) {
+    if (fingerprintMgr.isHardwareDetected() || fingerprintMgr.hasEnrolledFingerprints()) {
       biometrics.add("fingerprint");
-      if (fingerprintMgr.hasEnrolledFingerprints()) {
-        biometrics.add("fingerprint");
-      } else {
-        biometrics.add("undefined");
-      }
+    } else {
+      biometrics.add("undefined");
     }
     if (Build.VERSION.SDK_INT >= 29) {
       if (packageManager.hasSystemFeature(PackageManager.FEATURE_FACE)) {
