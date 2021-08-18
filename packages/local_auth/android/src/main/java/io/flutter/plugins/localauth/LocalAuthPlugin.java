@@ -269,9 +269,11 @@ public class LocalAuthPlugin implements MethodCallHandler, FlutterPlugin, Activi
       return biometrics;
     }
     PackageManager packageManager = activity.getPackageManager();
-    if (Build.VERSION.SDK_INT >= 23) {
-      if (packageManager.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT)) {
+    if (fingerprintMgr.isHardwareDetected()) {
+      if (fingerprintMgr.hasEnrolledFingerprints()) {
         biometrics.add("fingerprint");
+      } else {
+        biometrics.add("undefined");
       }
     }
     if (Build.VERSION.SDK_INT >= 29) {
