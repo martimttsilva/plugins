@@ -31,6 +31,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 import io.flutter.plugins.localauth.AuthenticationHelper.AuthCompletionHandler;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 
 /**
  * Flutter plugin providing access to local authentication.
